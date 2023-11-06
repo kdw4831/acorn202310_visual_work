@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step09_form4.html</title>
+</head>
+<body>
+    <div class="container">
+        <h1>폼 요소에 기본값 설정하기</h1>
+        <p>
+            서버에서 클라이언트에게 폼을 응답할때 이미 저장된 값을 
+            출력한 체로 응답을 해야 할때가 있다.
+            예를 들어 회원 가입된 정보 보기로 이동한다면 
+            DB 에 이미 저장된 내용을 출력해 주어야 한다.
+        </p>
+        <form action="update.jsp">
+            이메일 <input type="email" name="email" value="kim@naver.com"><br>
+            <fieldset>
+                <legend>취미 정보 선택</legend>
+                <label>
+                    <input type="checkbox" name="hobby" value="soccer"> 축구
+                </label>
+                <label>
+                    <input type="checkbox" name="hobby" value="baking" checked> 베이킹
+                </label>
+                <label>
+                    <input type="checkbox" name="hobby" value="piano" checked> 피아노
+                </label>
+                <label>
+                    <input type="checkbox" name="hobby" value="etc"> 기타
+                </label>                
+            </fieldset>
+            <label for="job">직업</label>
+            <select name="job" id="job">
+                <option value="">선택</option>
+                <option value="programmer">프로그래머</option>
+                <option value="doctor">의사</option>
+                <option value="pianist" selected>피아니스트</option>
+                <option value="etc">기타</option>
+            </select>
+            <br>   
+            하고 싶은말
+            <br>
+            <!-- textarea 의 초기값은 textarea 의 innerText 로 출력을 해 놓아야 한다. -->
+            <textarea name="comment" rows="10">김구라
+해골
+원숭이</textarea>
+            <br>
+            <button>수정하기</button>
+        </form>
+    </div>
+</body>
+</html>

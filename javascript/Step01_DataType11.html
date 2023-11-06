@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step01_DataType11.html</title>
+</head>
+<body>
+    <h1>function type 의 매개변수</h1>
+    <script>
+        /*
+            function(msg){ }
+            에서 msg 는 매개 변수이다.
+            함수에 전달되는 값을 전달 받을 변수이며 let 을 선언하지 않는다.
+            매개변수는 해당 함수 안에서만 사용할수 있다.
+        */
+
+        let printMsg = function(msg){
+            console.log("-----------");
+            console.log(msg);
+            console.log("-----------");
+        };
+
+        printMsg("hello");
+        printMsg("bye");
+    </script>
+</body>
+</html>

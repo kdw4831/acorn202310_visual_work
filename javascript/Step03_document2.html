@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step03_document2.html</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <button id="moveBtn">움직이기</button>
+    <div class="box"></div>
+    <input type="text" id="inputMsg" placeholder="메세지 입력">
+    <button id="send">전송</button>
+    <script>
+        // 버튼을 눌렀을때 .box  div 의  margin-left 를 100px 로 변경되도록 프로그래밍 해 보세요.
+        document.querySelector("#moveBtn").addEventListener("click", function(){
+            document.querySelector(".box").style.marginLeft="100px";
+        });
+
+        // 위의 input 요소에 문자열을 입력한후 전송 버튼을 누르면
+        // 입력한 문자열이 콘솔창에 출력되도록 프로그래밍 해 보세요.
+        document.querySelector("#send").addEventListener("click", function(){
+            //입력한 문자열을 읽어와서 변수에 담는다
+            let msg=document.querySelector("#inputMsg").value;
+            //변수에 담긴 내용을 콘솔창에 출력하기 
+            console.log(msg);
+        });
+    </script>
+</body>
+</html>

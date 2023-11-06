@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step03_document.html</title>
+</head>
+<body>
+    <h1>document object 사용해 보기</h1>
+    <p id="one">p1</p>
+    <p id="two" class="my-class">p2</p>
+    <p id="three" class="my-class">p3</p>
+    <input type="text" id="inputEmail" placeholder="이메일 입력...">
+    <input type="text" id="inputMsg" placeholder="메세지 입력...">
+    <br>
+    <button id="myBtn">눌러보셈</button>
+    <button id="changeBtn">바꾸기</button>
+    <button id="changeColor">색상 바꾸기</button>
+    <script>
+        /* 
+            id 가 myBtn 인 요소에 "click" 이벤트가 발생했을때 실행할 함수 등록 
+
+            .addEventListener("이벤트명", callback 함수)
+        */
+        document.querySelector("#myBtn").addEventListener("click", function(){
+            console.log("버튼을 눌렀네요?");
+        });
+
+        //바꾸기 버튼을 눌렀을때 h1 요소의 innerText 를  "안녕하세요" 로 변경되도록 프로그래밍 해 보세요.
+        document.querySelector("#changeBtn").addEventListener("click", function(){
+            document.querySelector("h1").innerText="안녕하세요";
+        });
+
+        //색상 바꾸기 버튼을 눌렀을때 h1 요소의 글자색을 "blue" 로 변경해 보세요.
+        document.querySelector("#changeColor").addEventListener("click", function(){
+            document.querySelector("h1").style.color="blue";
+            document.querySelector("h1").style.backgroundColor="yellow";
+            //글자 크기도 50px 로 변경해 보세요
+            document.querySelector("h1").style.fontSize="50px";
+        });
+    </script>
+</body>
+</html>

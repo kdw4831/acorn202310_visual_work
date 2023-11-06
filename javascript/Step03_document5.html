@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step03_document5.html</title>
+</head>
+<body>
+    <h1>문서 객체를 동적으로 만들기</h1>
+    <button id="makeBtn">만들기</button>
+    <div class="wrapper">
+        
+    </div>
+    <script>
+        document.querySelector("#makeBtn").addEventListener("click", function(){
+            // p 요소를 동적으로 만들어서 참조값을 p1 이라는 변수에 담기
+            let p1=document.createElement("p");
+            // innerText 추가하기 
+            p1.innerText="p 요소 입니다.";
+            // .wrapper div 에 추가하기
+            document.querySelector(".wrapper").append(p1);
+            // css 조작하기
+            p1.style.color="red";
+        });
+
+    </script>
+</body>
+</html>

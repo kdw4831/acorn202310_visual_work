@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="printBtn">출력하기</button>
+    <script>
+        function getMember(){
+            console.log("getMember() 호출됨");
+            let mem={num:1, name:"김구라", addr:"노량진"};
+            return mem;
+        }
+
+        let result=getMember().name;
+    </script>
+</body>
+</html>
