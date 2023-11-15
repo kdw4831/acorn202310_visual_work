@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step01_Canvas.html</title>
+    <style>
+        canvas{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h1>canvas 요소 활용하기</h1>
+    <!-- canvas 요소는 width 와 height 를 속성으로 직접 지정할수 있다. -->
+    <canvas id="myCanvas" width="800" height="500"></canvas>
+    <script>
+        /*
+            javascript 로 canvas 요소에 그림을 그릴수 있다.
+            이미지를 로딩해서 이미지도 원하는 크기로 원하는 위치에 그릴수도 있다.
+            도형, 글자도 출력가능
+        */
+        //canvas 요소의 참조값 
+        const canvas=document.querySelector("#myCanvas");
+        //canvas 에 그림을 그릴 도구(context) 객체 얻어내기
+        const context=canvas.getContext("2d");
+        
+        //canvas 에 그릴 이미지 로딩
+        const snipeImg=new Image();
+        snipeImg.src="images/snipe.png";
+
+        const holeImg=new Image();
+        holeImg.src="images/hole.png";
+
+        //snipe 의 좌표
+        let snipeX=0, snipeY=0;
+
+        //총알 구멍 정보를 누적시킬 빈 배열을 미리 준비
+        const holes=[];
+
+        // 10/1000  초  즉 1/100 초 마다 한번씩 호출되는 콜백함수 등록
+        setInterval(()=>{
+            // 사각형영역 clear   (x, y, width, height)
+            context.clearRect(0, 0, 800, 500);
+            //반복문 돌면서 모든 총알 구멍 이미지 그리기
+            for(let i=0; i<holes.length; i++){
+                //i 번째 총알 구멍 object
+                let tmp=holes[i];
+                //object 에 저장된 좌표를 이용해서 총알 구멍 그리기
+                context.drawImage(holeImg, tmp.x-10, tmp.y-10, 20, 20);
+            }
+
+            //여기는 1초에 100 번씩 실행되는 영역이다
+            context.drawImage(snipeImg, snipeX-50, snipeY-50, 100, 100);
+        }, 10);
+
+        //canvas 요소에서 발생하는 mousemove 이벤트 처리
+        canvas.addEventListener("mousemove", (e)=>{
+            //이벤트가 발생한곳의 canvas 내에서의 좌표
+            snipeX=e.offsetX;
+            snipeY=e.offsetY;
+        });
+        //canvas 요소에서 발생하는 mousedown 이벤트 처리
+        canvas.addEventListener("mousedown", (e)=>{
+            //이벤트가 발생한곳의 좌표(총알 구멍을 그려야하는 좌표)를 object 에 담는다.
+            const obj={x:e.offsetX, y:e.offsetY};
+            //object 를 배열에 누적 시킨다. 
+            holes.push(obj);
+        });
+    </script>
+</body>
+</html>

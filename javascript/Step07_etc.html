@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step07_etc.html</title>
+</head>
+<body>
+    <h1>setTimeout 함수 사용하기</h1>
+    <button id="printBtn">10 초 후에 출력하기</button>
+    <p id="one"></p>
+
+    <script>
+        document.querySelector("#printBtn").addEventListener("click",()=>{
+            //setTimeout(콜백함수, 지연시간ms)
+            setTimeout(()=>{
+                document.querySelector("#one").innerText="안녕!";
+            },1000*10);
+            
+        });
+    </script>
+</body>
+</html>ㅁ

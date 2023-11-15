@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step06_Array4.html</title>
+</head>
+<body>
+        <h1>배열 아이템의 정렬</h1>
+        
+        <script>
+            // a-b를 빼면 오름차순 정렬
+            // b-a를 빼면 내림차순 정렬
+            let nums=[-30,10,-20,20,30];
+            let result=nums.sort((a,b)=>{
+                let c=a-b;
+                console.log("a:"+ a +" b:"+b+" a-b:"+c);
+                return c;
+            })
+            /*
+                1. 위 배열의 모든 아이템에 25를 더한 배열을 얻어내고
+                2. 얻어낸 배열에서 양의 정수만 남긴 배열을 얻어내고 
+                3. 오름차순으로 정렬하기
+            */
+
+            let result2= nums.map((item)=> item+25).filter((item)=>item>0).sort((a,b)=>a-b);
+
+            //핸드폰 목록
+            let phones=[
+                {names:"iphone 10",price:50},
+                {names:"android 5",price:20},
+                {names:"갤럭시 S5",price:30},
+                {names:"iphone 13",price:100},
+                {names:"갤럭시 10",price:80},
+            ]
+
+            /*
+                위의 핸드폰 목록에서 가격이 50이상인 핸드폰 정보만 담은 배열을 얻어내고 
+                해당 배열의 아이템을 핸드폼 가격에 대해서 오름 차순 정렬되도록 해보세요
+            */
+            let result3= phones.filter((item)=>item.price>=50).sort((a,b)=>a.price-b.price);
+            
+        </script>
+</body>
+</html>

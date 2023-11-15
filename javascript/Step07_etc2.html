@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step07_etc2.html</title>
+</head>
+<body>
+    <h1>setInterval 함수 사용하기</h1>
+    <button id="printBtn">1초 마다 출력하기</button>
+    <button id="cancelBtn">Interval 취소하기</button>
+    <ul id="one">
+
+    </ul>
+    <script>
+        //아래의 이벤트 리스너 함수 모두에서 참조 가능한 영역에 변수를 만든다.
+        let intervalid;
+        let isRunning=false;
+        document.querySelector("#printBtn").addEventListener("click",()=>{
+            
+        
+            //상태값을 체크해서 다른 동작을 하게 한다.
+            if(isRunning){ //만일 실행중이면
+                return; // 함수를 여기서 종료를 시킨다.
+            }
+
+            //setInterval(콜백함수, 반복주기ms)
+            intervalid = setInterval(()=>{
+                document.querySelector("#one").insertAdjacentHTML("beforeend","<li>하이!</li>");
+            },1000);
+
+            //상태값을 변경한다.
+            isRunning=true;
+            
+
+        });
+        
+
+
+        document.querySelector("#cancelBtn").addEventListener("click",()=>{
+            clearInterval(intervalid);
+            isRunning=false;
+            
+        })
+    </script>
+
+</body>
+</html>
