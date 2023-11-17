@@ -32,29 +32,67 @@
         const holeImg=new Image();
         holeImg.src="images/hole.png";
 
+        //배경이미지
+        const backImg=new Image();
+        backImg.src="images/background.jpg";
+
         //snipe 의 좌표
         let snipeX=0, snipeY=0;
 
-        let holeX=0, holeY=0;
+        //총알 구멍 정보를 누적시킬 빈 배열을 미리 준비
+        const holes=[];
 
-        let holelist=[];
-        
+        //효과음 로딩
+        const fireSound=new Audio("sounds/fire.wav");
 
-        
+        const pianoSound=new Audio("sounds/piano.mp3");
+
+        //토끼 이미지
+        const rabbitImg=new Image();
+        rabbitImg.src="images/rabbit_1.png";
+        const rabbitImg2=new Image();
+        rabbitImg2.src="images/rabbit2.png";
+        //토끼 이미지를 배열에 담아놓기
+        const rabbitImgs=[rabbitImg, rabbitImg2];
+        //토끼 이미지 인덱스를 저장할 변수
+        let rabbitIndex=0;
+
+        //토끼의 좌표를 저장할 변수 
+        let rabbitX=400, rabbitY=250;
+
+        //카운트를 셀 변수 
+        let count=0;
 
         // 10/1000  초  즉 1/100 초 마다 한번씩 호출되는 콜백함수 등록
         setInterval(()=>{
+            count++;
+
             // 사각형영역 clear   (x, y, width, height)
-            context.clearRect(0, 0, 800, 500);
-            //총알 구멍 이미지 그리기
-            //context.drawImage(holeImg, holeX-10, holeY-10, 20, 20);
-            for(let i=0; i<holelist.length; i++){
-                
-                context.drawImage(holeImg, holelist[i].X-10, holelist[i].Y-10, 20, 20);
+            //context.clearRect(0, 0, 800, 500);
+            //배경이미지 그리기 
+            context.drawImage(backImg, 0, 0, 800, 500);  //배경이미지가 기존에 그렸던 것을 덮어버리기때문에 사각형을 클리어할 필요 x
+            //반복문 돌면서 모든 총알 구멍 이미지 그리기
+            for(let i=0; i<holes.length; i++){
+                //i 번째 총알 구멍 object
+                let tmp=holes[i];
+                //object 에 저장된 좌표를 이용해서 총알 구멍 그리기
+                context.drawImage(holeImg, tmp.x-10, tmp.y-10, 20, 20);
             }
+            //토끼 이미지 그리기
+            context.drawImage( rabbitImgs[rabbitIndex], rabbitX-50, rabbitY-50, 100, 100);
 
             //여기는 1초에 100 번씩 실행되는 영역이다
             context.drawImage(snipeImg, snipeX-50, snipeY-50, 100, 100);
+
+            if(count%20 == 0){
+                //토끼 애니매이션
+                rabbitIndex++; //인덱스를 1 증가 시키고 
+                //만일 존재하지 않는 인덱스라면 
+                if(rabbitIndex == 2){
+                    //인덱스를 다시 처음으로 되돌리기
+                    rabbitIndex=0;
+                }
+            }
         }, 10);
 
         //canvas 요소에서 발생하는 mousemove 이벤트 처리
@@ -63,14 +101,15 @@
             snipeX=e.offsetX;
             snipeY=e.offsetY;
         });
-
+        //canvas 요소에서 발생하는 mousedown 이벤트 처리
         canvas.addEventListener("mousedown", (e)=>{
-            holeX=e.offsetX;
-            holeY=e.offsetY;
-            let obj={X:e.offsetX, Y:e.offsetY}
-            holelist.push(obj);
-            
-            
+            //이벤트가 발생한곳의 좌표(총알 구멍을 그려야하는 좌표)를 object 에 담는다.
+            const obj={x:e.offsetX, y:e.offsetY};
+            //object 를 배열에 누적 시킨다. 
+            holes.push(obj);
+            //총소리를 재생한다.
+            fireSound.currentTime=0;   // 연속재생이 안되서 클릭할 때마다 재생시간이 0으로 초기화 되게끔 하기
+            fireSound.play();
         });
     </script>
 </body>
