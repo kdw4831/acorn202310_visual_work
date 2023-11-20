@@ -76,16 +76,11 @@
         const dialImg=new Image();
         dialImg.src="images/dial.png";
         
-    
         const secImg=new Image();
         secImg.src="images/clock_sec.png";
 
         const minImg=new Image();
         minImg.src="images/clock_min.png";
-
-        const hourImg=new Image();
-        hourImg.src="images/clock_hour.png";
-      
 
         //시계의 좌표
         let dialX=100, dialY=100;
@@ -115,37 +110,22 @@
             const hour=d.getHours(); //시간
             const min=d.getMinutes(); //분
             const sec=d.getSeconds(); //초
-            console.log(hour+"시 "+min+"분 "+sec+"초");
-           
+
             //초침의 회전각 계산
             const rSec=6*sec*(Math.PI/180);
-            //초침 그리기전에
+            //분침의 회전각 계산
+            const rMin=( 6*min + 6*sec/60 )*(Math.PI/180);
+
+            //초침을 그리기 전에 context 회전시키기
             context.rotate(rSec);
             //초침 그리기
-            context.drawImage(secImg, 0-4, 0-90, 8, 90)
-            
-            //분침의 회전각 계산 // 현재 몇초가 경과 했는지 비율 만큼 더 회전해야 한다.
-            const rMin=(6*min +6*sec/60)*(Math.PI/180);
-            //분침 그리기전에
-            context.rotate(rMin-rSec);
-            //분침 그리기
-            context.drawImage(minImg, 0-4, 0-90, 8, 90)
-            
-            //시침의 회전각 계산
-            const rHour=(30*hour+30*min/60)*(Math.PI/180);
-            //시침 그리기전에
-            context.rotate(rHour-rMin);
-            
-            //시침 그리기
-            context.drawImage(hourImg, 0-4, 0-90, 8, 90)
+            context.drawImage(secImg, 0-4, 0-90, 8, 90);
 
-    
-          
-           
-            
-          
-            
-           
+            //분침을 그리기 전에 context 회전 시키기
+            context.rotate(rMin-rSec);
+
+            //분침 그리기
+            context.drawImage(minImg, 0-4, 0-90, 8, 90);
 
             //context 를 최근 저장된 상태(정상상태) 로 되돌리기 
             context.restore();
