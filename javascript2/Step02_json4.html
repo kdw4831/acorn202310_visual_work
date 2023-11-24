@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step02_Json4.html</title>
+</head>
+<body>
+    <button id="addbtn">추가</button>
+    <button id="addbtn2">추가2</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>이름</th>
+                <th>주소</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+
+    <script>
+        //원격지 서버로 부터 받아온 UI에 출력할 정보를 가지고 있는 JSON 문서(문자열)이라고 가정
+        const data=`{"num":1, "name":"김구라", "addr":"노량진"}`;
+        //추가 버튼을 눌렀을 때 위의 data를 이용해서 tbody에 table row를 하나 추가해보세요
+        const info=JSON.parse(data);
+
+        document.querySelector("#addbtn").addEventListener("click",()=>{
+           
+            //td 요소 3개를 만들어서  참조값을 상수에 담기
+            const td1=document.createElement("td");
+            const td2=document.createElement("td");
+            const td3=document.createElement("td");
+            //만들어진 td 요소의 innertext에 회원정보 출력
+            td1.innerText=info.num;
+            td2.innerText=info.name;
+            td3.innerText=info.addr;
+            //tr 요소를 하나 만들어서 참조값을 상수에 담기
+            const tr=document.createElement("tr");
+            //만들어진  tr 요소에 td 요소 3개를 자식 요소로 추가하기
+            tr.append(td1);
+            tr.append(td2);
+            tr.append(td3);
+            //tr 요소를 tbody에 추가하기
+            document.querySelector("tbody").append(tr);
+        });
+
+        
+
+    </script>
+</body>
+</html>

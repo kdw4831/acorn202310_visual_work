@@ -61,6 +61,7 @@
 
         //카운트를 셀 변수 
         let count=0;
+        
 
         //토끼 파편 이미지 로딩해서 배열에 저장하기
         const fragImgs=[];
@@ -85,12 +86,20 @@
 
         const hourImg=new Image();
         hourImg.src="images/clock_hour.png";
+
+        const pointImg= new Image();
+        pointImg.src="images/clock_point.png";
       
 
         //시계의 좌표
         let dialX=100, dialY=100;
 
-        // 10/1000  초  즉 1/100 초 마다 한번씩 호출되는 콜백함수 등록
+        //포인터( 토끼를 잡았을 때 카운트)
+        let point=0;
+
+       
+
+        //10/1000  초  즉 1/100 초 마다 한번씩 호출되는 콜백함수 등록
         setInterval(()=>{
             count++;
 
@@ -98,6 +107,7 @@
             //context.clearRect(0, 0, 800, 500);
             //배경이미지 그리기 
             context.drawImage(backImg, 0, 0, 800, 500);
+
 
             //context 의 현재상태( 이 위치는 변화를 가하지 않은 상태 이다 ) 저장하기
             context.save();
@@ -122,30 +132,26 @@
             //초침 그리기전에
             context.rotate(rSec);
             //초침 그리기
-            context.drawImage(secImg, 0-4, 0-90, 8, 90)
+            context.drawImage(secImg, 0-4, 0-85, 8, 85)
             
             //분침의 회전각 계산 // 현재 몇초가 경과 했는지 비율 만큼 더 회전해야 한다.
             const rMin=(6*min +6*sec/60)*(Math.PI/180);
             //분침 그리기전에
             context.rotate(rMin-rSec);
             //분침 그리기
-            context.drawImage(minImg, 0-4, 0-90, 8, 90)
+            context.drawImage(minImg, 0-4, 0-85, 8, 85)
             
-            //시침의 회전각 계산
-            const rHour=(30*hour+30*min/60)*(Math.PI/180);
-            //시침 그리기전에
+            //시침의 회전각 계산  6시 30분이면 시침이 180도 하고 15도 더돌지?
+            const rHour=(30*hour+30*min/60)*(Math.PI/180); 
+            //시침 그리기전에 context 회전시키기
             context.rotate(rHour-rMin);
-            
             //시침 그리기
-            context.drawImage(hourImg, 0-4, 0-90, 8, 90)
+            context.drawImage(hourImg, 0-4, 0-85, 8, 85)
 
     
-          
-           
+            //point 그리기
+            context.drawImage(pointImg,-5,-5,10,10);
             
-          
-            
-           
 
             //context 를 최근 저장된 상태(정상상태) 로 되돌리기 
             context.restore();
@@ -166,13 +172,25 @@
             //토끼 파편 그리기
             for(let i=0; i<fragments.length; i++){
                 let tmp=fragments[i];
-                context.drawImage(fragImgs[tmp.index], tmp.x-50, tmp.y-50, 100, 100);
+                
+                context.save();
+                //파편의 위치로 context를 평행이동, 회전 후에 원점에 그린다.
+                context.translate(tmp.x,tmp.y);
+                context.rotate(tmp.angle);
+                context.drawImage(fragImgs[tmp.index], 0-50, 0-50, 100, 100);
+                context.restore();
+               
+
+                
+                
             }
             //토끼 파편 움직이기
             fragments.forEach((tmp)=>{
                 //각각의 파편 객체가 가지고 있는 속도만큼 좌표에 반영하기 
                 tmp.x += tmp.speedX;
                 tmp.y += tmp.speedY;
+                //각각의 파편객체가 가지고 있는 각속도 만큼 각도를 변화 시키기
+                tmp.angle +=tmp.angleSpeed
                 //화면을 벗어났는지 여부를 판별에서 isOut 에 넣어준다.
                 tmp.isOut = tmp.x<-50 || tmp.x>850 || tmp.y<-50 || tmp.y>550;  
             });
@@ -199,7 +217,13 @@
 
             //여기는 1초에 100 번씩 실행되는 영역이다
             context.drawImage(snipeImg, snipeX-50, snipeY-50, 100, 100);
-
+                
+            //글자 출력
+            context.font="20px consolas"; //글자 크기, 글꼴
+            context.fillStyle="yellow"; //글자 색상
+            // .fillText("출력할 글자", 좌하단 x 좌하단 y)
+            context.fillText("Point : "+point,650 ,30); 
+            
             if(count%20 == 0){
                 //토끼 애니매이션
                 rabbitIndex++; //인덱스를 1 증가 시키고 
@@ -246,12 +270,19 @@
                     //파편 이미지 인덱스도 부여하기 
                     tmp.index=i;
                     tmp.isOut=false; //화면을 벗어 났는지 여부 
+                    
+                    tmp.angle=0;
+                    tmp.angleSpeed=Math.random()*0.5;// -0.5 ~ 0.5 사이의 랜덤한 실수
+                    
                     //파편의 정보를 가지고 있는 object 를 배열에 누적 시키기 
                     fragments.push(tmp);
+
+                    
                 }
                 //토끼의 좌표를 랜덤한 위치로 변경
                 rabbitX=Math.random()*700+50;
                 rabbitY=Math.random()*400+50;
+                point++;
             }
         });
     </script>
