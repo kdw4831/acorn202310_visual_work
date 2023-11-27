@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step03_test.html</title>
+</head>
+<body>
+
+
+
+    <div id="wrapper">
+    
+    
+    </div>
+    
+
+    <button id="one">innerHTML</button>
+    <button id="two">innertext</button>
+
+
+    <ul>
+        <li>하나</li>
+        <li>두울</li>
+    </ul>
+    <button id="three">afterbegin</button>
+    <button id="four">beforeend</button>
+    
+    <script>
+        const str="<a href='http://daum.net'> daum </a>";
+        document.querySelector("#one").addEventListener("click",()=>{
+            document.querySelector("#wrapper").innerHTML=str;
+        })
+        document.querySelector("#two").addEventListener("click",()=>{
+            document.querySelector("#wrapper").innerText=str;
+        })
+        /*
+            .insertAdjacentHTML("위치","html 문자열")
+            "beforebegin" => 시작 전
+            "afterbegin" => 시작 직후
+            "beforeend" => 끝나기전
+            "afterend" => 끝난 직후
+        */
+
+        const str2="<li>세엣</li>";
+        document.querySelector("#three").addEventListener("click", ()=>{
+            document.querySelector("ul").insertAdjacentHTML("afterbegin", str2);
+        });
+
+        document.querySelector("#four").addEventListener("click", ()=>{
+            document.querySelector("ul").insertAdjacentHTML("beforeend", str2);
+        });
+    </script>
+</body>
+</html>
