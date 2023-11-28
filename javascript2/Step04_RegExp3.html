@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step04_RegExp3.html</title>
+</head>
+<body>
+    <h1>매칭되는 문자열 여러개 출력하기</h1>
+    <ul id="wordList">
+
+    </ul>
+    <script>
+        const str="My name is Kimgura";
+        //const reg=/[^ ]+/g;
+        const reg= new RegExp("[^ ]+","g"); // 공백이 아닌 한 글자를 전체(g)에서 찾기
+        //반복문 돌면서 찾기
+
+        while(true){
+            /*
+                .exec()가 리턴하는 데이터는 특별한 기능을 가지고 있는 문자열이다.
+                일반 string type이 가지고 있지 않은 다른기능(필드)를 가지고 있지만
+                단순히 문자열이라고 봐도 상관없다.
+
+            */
+           let tmp=reg.exec(str);
+           // 더이상 찾을게 없으면 null이 리턴된다
+           if(tmp==null)break;
+           console.log(tmp);
+           //ul 요소의 자식요소로 출력하기
+           const word=`<li>${tmp}</li>`;
+           document.querySelector("#wordList").insertAdjacentHTML("beforeend",word);
+        }
+
+    </script>
+
+</body>
+</html>

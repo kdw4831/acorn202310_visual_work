@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step04_RegExp.html</title>
+</head>
+<body>
+    <script>
+        
+        //검증할 문자열
+        const str="abcabcabc";
+        const str2="bcbcbc"
+        
+        // 정규표현식(Regular Expression 객체는 슬래시로 감싸서 만들 수 있다.)
+        // 어떤 문자열 안에 a라는 문자가 포함되어있는지 여부를 알아 낼수 있다.
+        // 어떤 문자열 안에 a라는 포함된 갯수만큼 추출할 수 있다.
+
+        //new RegExp("a");
+        const reg1=/a/;
+        // 정규 표현식 객체를 클래스를 이용해서 생성할 수도 있다.
+        const reg2= new RegExp("a");
+
+        //대소문자를 가리지 않으려면 i를 옵션으로 붙여준다.(ignore case의 약자)
+        const reg3= /hello/i;
+        const reg4= new RegExp("hello","i");
+
+        //매칭되는 모든 문자열을 추출하고 싶으면  g를 옵션으로 붙여준다.(global의 약자)
+        const reg5=/bye/g;
+        const reg6= new RegExp("bye","g");  
+        
+        
+        // 두가지 옵션을 모두 적용하고 싶다면
+        const reg7=/hi/gi;
+        const reg8= new RegExp("hi","gi");
+
+    </script>
+</body>
+</html>

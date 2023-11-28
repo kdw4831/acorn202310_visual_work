@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step04_RegExp2.html</title>
+</head>
+<body>
+    <h1>입력한 문자열 검증하기</h1>
+    <p>
+        조건 : <strong>반드시 입력해야하고 특수문자는 허용하지 않는다.</strong>
+    </p>
+    <input type="text" id="msg" placeholder="입력...">
+    <p id="result"></p>
+
+    <script>
+        //문자열을 검증할 정규 표현식 객체 만들기
+        const reg=/^[a-zA-Z0-9]+$/; //양쪽 끝에 다른 문자가 들어가지 않도록 시작과 끝을 지정해준다.  $$$abc&&이것도 통과하니까..
+        document.querySelector("#msg").addEventListener("input",()=>{
+            //1. 입력한 문자열을 읽어와서
+            let msg=document.querySelector('#msg').value;
+            //2. 검증후에
+            let isPass=reg.test(msg);
+            //3. 통과하면 p 요소에 "pass"를 출력, 통과 못하면 "Fail" 출력
+            if(isPass){
+                document.querySelector("#result").innerText="Pass";
+            }else{
+                document.querySelector("#result").innerText="Fail";
+            }
+        });
+    </script>
+</body>
+</html>
