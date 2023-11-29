@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .err-feedback{
+            color:red;
+            font-size:10px;
+            display:none;
+        }
+        .suc-feedback{
+            color:green;
+            font-size: 10px;
+            display:none;
+        }
+    </style>
+</head>
+<body>
+    <h1>폼 입력값 검증</h1>
+    <form action="signup" method="post">
+        <div>
+            <input type="text" name="id" id="id" placeholder="아이디 입력...">
+            <p id="idFeedBack" class="err-feedback" >특수문자는 허용하지 않으며 5~10글자 이내로 입력해 주세요</p>
+            <p id="idFeedBack2" class="suc-feedback" >정상 입력되었습니다</p>
+        </div>
+
+        <div>
+            <input type="email" name="email" id="email" placeholder="이메일 입력...">
+            <p id="emailFeedBack" class="err-feedback">이메일 형식에 맞게 입력해 주세요</p>
+            <p id="emailFeedBack2" class="suc-feedback" >정상 입력되었습니다</p>
+        </div>
+        <button type="submit">가입</button>
+
+    </form>
+    
+
+    <script>
+        
+        //입력한 아이디를 검증할 정규 표현식 객체
+        const regId=/^[\w]{5,10}$/
+        const regEmail=/^[\w]+@[a-z]+\..{2,}$/
+        document.querySelector("#id").addEventListener("input",()=>{
+            //입력한 아이디를 읽어온다.
+            let inputId =document.querySelector("#id").value;
+            //정규 표현식 통과 여부를 얻어낸다.
+            let isPass=regId.test(inputId);
+            //만일 통과 했으면
+            
+            if(isPass){
+                document.querySelector("#idFeedBack2").style.display="block";
+                document.querySelector("#idFeedBack").style.display="none";
+            }else{//그렇지 않으면
+                document.querySelector("#idFeedBack2").style.display="none";
+                document.querySelector("#idFeedBack").style.display="block";
+            }
+        })
+
+
+        document.querySelector("#email").addEventListener("input",()=>{
+            let inputEmail =document.querySelector("#email").value;
+            let isPass=regEmail.test(inputEmail);
+            console.log(isPass)
+            if(isPass){
+                document.querySelector("#emailFeedBack2").style.display="block";
+                document.querySelector("#emailFeedBack").style.display="none";
+            }else{
+                document.querySelector("#emailFeedBack2").style.display="none";
+                document.querySelector("#emailFeedBack").style.display="block";
+            }
+        })
+    </script>
+</body>
+</html>
