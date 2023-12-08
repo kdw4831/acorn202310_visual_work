@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step01_event.html</title>
+    <!--vue js 로딩-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>이벤트 테스트</h1>
+        <div id="app">         
+            <!--
+                v-on:이벤트명="methods object에 있는 호출될 함수명"
+            -->
+            <button v-on:click="clicked">눌러보셈</button>
+            <button v-on:click="clicked2">눌러보셈2</button>
+            <p>{{msg}}</p>
+        </div>
+    </div>
+    <script>    
+        new Vue({
+            el:"#app",
+            methods:{
+                clicked:function(){
+                    this.msg="버튼을 눌렀네요?"
+                },
+                //최신 추가 문법
+                clicked2(){
+                    this.msg="또 버튼을 눌렀네요";
+                }
+            },
+            data:{
+                msg:""
+            }
+        })
+    </script>
+</body>
+</html>

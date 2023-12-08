@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step03_style.html</title>
+</head>
+
+<body>
+    <div class="container" id="app">
+        <h3>vue js 에서 인라인 css 조작하기</h3>
+        <p v-bind:style="{color:'red', fontSize:'30px'}">p1 입니다.</p>
+        <input type="range" v-model="fontSize" begin="10" end="100">{{fontSize}}px
+        <p v-bind:style="{color:fontColor, fontSize:fontSize+'px'}">p2 입니다.</p>
+        <p v-bind:style="obj">p3 입니다</p>
+        <p v-bind:style="obj2">p4 입니다</p>
+        <p :style="obj2">p5 입니다</p>
+        <input type="text" placeholder="글자색 입력..." v-model="fontColor">
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                fontColor: "red",
+                fontSize: 30,
+                obj: { color: "red", fontSize: "30px" },
+            },
+            computed: {
+                obj2() {
+                    return { color: this.fontColor, fontSize: this.fontSize + 'px' }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

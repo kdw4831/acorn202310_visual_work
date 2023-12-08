@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step01_event2.html</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body > <!--div에서 일어나는 모든 일을 vue로 관리하겠다.-->
+    <div id="app" class="container">
+        <h1>이벤트 테스트 </h1>
+        <button v-on:click="minus">-</button>
+        <strong>{{count}}</strong>
+        <button @click="plus">+</button>
+    </div>  
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                count:0
+            },
+            methods:{
+                plus(){
+                   this.count++;
+                },
+                minus(){
+                    if(this.count>0){
+                        this.count--;
+                    }
+                    
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

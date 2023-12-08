@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step01_event2.html</title>
+    <style>
+        .box{
+            width:500px;
+            height:500px;
+            border:1px solid red;
+        }
+    </style>
+
+    <!--vue js 로딩-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h1>이벤트 테스트 3</h1>
+    <div id="app">         
+        <div class="box" @mousemove="moved">
+            x : <strong>{{x}}</strong>
+            <br>
+            y : <strong>{{y}}</strong>
+        </div>
+        
+    </div>
+
+    <script>    
+        new Vue({
+            el:"#app",
+            data:{
+                x:0,
+                y:0
+            },
+
+            methods:{
+                moved(e){
+                    console.log(e);
+                    this.x=e.offsetX;
+                    this.y=e.offsetY;
+
+                }
+            }
+          
+        })
+    </script>
+</body>
+</html>

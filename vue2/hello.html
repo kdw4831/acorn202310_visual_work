@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello.html</title>
+</head>
+<body>
+ 
+    <div>
+        <p>오늘의 운세:<strong id="result"></strong></p> 
+        <button id="printBtn">출력하기</button>
+        <br>
+        <input type="text" id="inputMsg">
+        <p id="result2"></p>
+    </div>
+    <script>
+        document.querySelector("#printBtn").addEventListener("click",()=>{
+            document.querySelector("#result").innerText="동쪽으로 가면 귀인을 만나요!";
+        })
+        //#inputMsg에 입력한 내용이 바로바로 #result2에 출력되도록 해보세요
+
+        document.querySelector("#inputMsg").addEventListener("input",()=>{
+            //현재까지 입력한 값을 읽어와서 e.target
+            let msg=document.querySelector("#inputMsg").value;
+            //innerText에 출력하기
+            document.querySelector("#result2").innerText=msg;
+        })
+        
+    </script>
+    <div id="app">
+        <p>오늘의 운세:<strong>{{fortune}}</strong></p> 
+        <button v-on:click="clicked">출력하기</button>
+        <!--v-on:이벤트명='호출할 함수 명'-->
+        <br>
+        <input type="text" v-model="msg">
+        <p>{{msg}}</p>
+    </div>
+    <!--vue js 로딩-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        //로딩된 vue js를 활용해서 동작 정의하기
+        //키값은 vue에 이미 정해져있다 value값은 우리가 정한다.
+        new Vue({
+            //key:value, key2:value2,.... 이미 정해진 키값이 있다.
+            el:"#app",
+            data:{
+                fortune:"", //fortune 이라는 모델의 초기값은 빈 문자열
+                msg:""
+            },
+            methods:{
+                clicked:function(){
+                    //this.fortune은 모델을 참조할 때 사용한다.
+                    this.fortune="동쪽으로 가면 귀인을 만나요!";
+                }
+                
+            }
+        });
+
+
+        // vue에서 모델(data)가 변경되면 그 모델에서 사용하는 UI는 자동으로 업데이트가 된다.
+    </script>
+</body>
+</html>

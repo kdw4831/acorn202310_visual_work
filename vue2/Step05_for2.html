@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step05_for2.html</title>
+</head>
+<body>
+
+    <div class="container" id="app">
+        <!--id="one"으로 부여하고 싶지만 부담이된다. 그래서 ref로 부여-->
+        <input ref="one" type="text" placeholder="메세지 입력..." v-model="msg">
+        <button @click="clicked">추가</button>
+        <ul>
+            <li v-for="item in msgs">{{item}}</li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                msg:"",
+                msgs:["하나","두울"]
+            },
+            methods:{
+                clicked(){
+                    //this.msgs.push(this.msg);
+                    //기존 배열에 아이템을 추가한 새로운 배열을 얻어낸다.
+                    const newArray=this.msgs.concat(this.msg);
+                    //새로운 배열을 msgs라는 모델에 덮어 쓴다.(모델 update)
+                    this.msgs=newArray;
+                    this.msg="";
+
+                    //document.querySelector("#one").focus();
+                    //vue가 관리하고 있는 문서객체의 참조값들 중에서 one이라는 이름을 가진 객체의 참조값
+                    this.$refs.one.focus();
+                }
+            }
+        })
+    </script>
+    
+
+</body>
+</html>
