@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step06_component.html</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="app">
+        <h3>재사용 가능한 component 정의하고 사용하기</h3>
+        <my-component></my-component>
+        <p>p1</p>
+        <my-component></my-component>
+
+        <h4>your-component 사용</h4>
+        <your-component v-bind:greet="'안녕하세요!'"></your-component>
+        <input type="text" v-model="msg" placeholder="메세지 입력...">
+        <your-component v-bind:greet="msg"></your-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+               msg:"또 만났군요!"
+            },
+            components:{
+                "my-component":{
+                    template:`<div class="box">box</div>`
+                },
+                "your-component":{
+                    template:`<div class="box">{{greet}}</div>`,
+                    props:["greet"] //전달 받을 proterty 목록을 배열의 아이템으로 정의하기  
+                }
+            }
+        });
+    </script>
+</body>
+</html>
