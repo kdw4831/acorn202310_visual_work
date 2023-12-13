@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step06_component3.html</title>
+</head>
+<body>
+    <div class="container" id="app">
+        <h1>component 사용 예제</h1>
+        <h3>회원정보</h3>
+        <member-component v-bind:mem="mem1"></member-component>
+        <member-component :mem="mem2"></member-component>
+        <h3>친구목록</h3>
+        <list-component :list="friends"></list-component>
+        <h3>점심목록</h3>
+        <input type="text" v-model="lunch" placeholder="먹고싶은 점심...">
+        <button @click="onAddClicked">추가</button>
+        <list-component :list="lunchs"></list-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        /*
+            재사용 가능한 컴포넌트를 전역으로 정의하기 
+            Vue.component("컴포넌트 이름", {컴포넌트 데이터});
+        */
+        Vue.component("member-component", {
+            template:`<p>
+                            번호 : {{mem.num}}  이름 : {{mem.name}}  주소 : {{mem.addr}}
+                    </p>`,
+            props:["mem"]
+        });
+
+        Vue.component("list-component", {
+            template:`
+                <ul>
+                    <li v-for="item in list">{{item}}</li>
+                </ul>
+            `,
+            props:["list"]
+        });
+
+        new Vue({
+            el:"#app",
+            data:{
+                mem1:{num:1, name:"김구라", addr:"노량진"},
+                mem2:{num:2, name:"해골", addr:"행신동"},
+                friends:["김구라", "해골", "원숭이"],
+                lunchs:["짜장면","김밥","파스타"],
+                lunch:""
+            },
+            methods:{
+                onAddClicked(){
+                    //현재 입력한 점심을 lunchs 배열에 이어 붙인 새로운 배열을 얻어내서 lunchs 모델에 덮어쓰기
+                    this.lunchs = this.lunchs.concat(this.lunch);
+                }
+            }
+        });
+
+
+    </script>
+</body>
+</html>

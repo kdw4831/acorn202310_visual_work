@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step07_eventEmit.html</title>
+</head>
+<body>
+
+    <div class="container" id="app">
+        <h3>{{msg}}</h3>
+        <counter @ten="onTen" ></counter>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        //자체적으로 사용하는 모델을 가지고 있는 component
+        Vue.component("counter", {
+        template:`
+            <button @click="onClicked" v-bind:style="{backgroundColor:bgColor}">{{count}}</button>
+        `,
+        data(){
+            //data 함수에서 리턴해주는 object 가 모델이다
+            return {
+                count:0
+            };
+        },
+        methods:{
+            onClicked(){
+                this.count++;
+                if(this.count%10==0){
+                    // "ten"이라는 이벤트를 발생시키면서 {} object에 현재 count 값을 담아서 전달하기
+                    this.$emit("ten",{current:this.count});
+                    //emit은 특정이벤트를 발생시키면서 어떠한 이벤트를 전달한다.
+                    //이벤트 명과 기능을 추가한다아
+
+
+                }
+            },
+           
+        },
+        /* props 의 이름을 camel case 로 작성하면  props 를 전달할때는 kebob case 로 전달해야 한다 */
+        props:["bgColor"]
+    });
+
+    new Vue({
+        el:"#app",
+        data:{
+            msg:""
+        },
+        methods:{
+            onTen(e){
+                console.log(e);
+                this.msg=`10의 배수가 되었네! 현재 : ${e.current}입니다.`
+            }
+        }
+    });
+
+    </script>
+</body>
+</html>
