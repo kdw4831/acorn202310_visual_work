@@ -1,0 +1,74 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "title": "node js 입니다",
+      "author": "김구라"
+    },
+    {
+      "id": 2,
+      "title": "json-server 테스트",
+      "author": "해골"
+    },
+    {
+      "title": "ㅁㄴㅇ",
+      "author": "ㄴㅁㅇ",
+      "id": 3
+    },
+    {
+      "title": "ㅁㄴㅇ",
+      "author": "ㄴㅁㅇ",
+      "id": 4
+    },
+    {
+      "title": "헬로오",
+      "author": "하이이",
+      "id": 5
+    },
+    {
+      "title": "ㅇㄹ",
+      "author": "ㅇㄹ",
+      "id": 6
+    },
+    {
+      "title": "오이이잉 ",
+      "author": "신기해애",
+      "id": 7
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "cafe": [
+    {
+      "id": 1,
+      "title": "안녕",
+      "writer": "kim",
+      "content": "json 서버를 활용하자"
+    },
+    {
+      "id": 2,
+      "title": "hello",
+      "writer": "lee",
+      "content": "json 서버를 활용하자2"
+    },
+    {
+      "id": 3,
+      "title": "bye",
+      "writer": "park",
+      "content": "json 서버를 활용하자3"
+    }
+  ]
+}

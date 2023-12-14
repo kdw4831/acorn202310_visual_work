@@ -1,0 +1,7 @@
+# .gitignore 파일
+# node_modules 하위에 너무 많은 파일이 있기 때문에 git의 추적 대상에서 제외
+
+node_modules/
+
+# 여기에서 어떤 모듈이 필요한지가 package.json 파일에 기록이 되어 있다.
+# 따라서 해당 모듈을 일괄 설치 하려면 package.json 파일이 있는 곳에서 npm install 하면 일괄 설치된다.
