@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step08_fetch.html</title>
+</head>
+<body>
+    <div class="container" id="app">
+        <h1>ajax 요청을 통해서 받아온 데이터 사용하기</h1>
+        <p>페이지 전환없이 서버에서 요청하는 것을 ajax라고 생각하면 된다.</p>
+        <button @click="getPosts">post 목록받아오기</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>글번호</th>
+                    <th>글제목</th>
+                    <th>작성자</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in posts">
+                    <td>{{item.id}}</td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.author}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                //글목록을 담을 배열
+                posts:[]
+            },
+            methods:{
+                getPosts(){
+                    //서버에 글 목록을 fetch() 함수를 이용해서 요청하겠다.
+                    fetch("http://localhost:3000/posts")
+                    .then(res=>res.json())
+                    .then(data=>{
+                        //data는 글 정보가 들어있는 [{},{},{}, ...] 이러한 형태의 배열이다.
+                        console.log(data);
+                        //data를 모델에 덮어쓰기하면 UI가 자동으로 업데이트된다.
+                        this.posts=data;
+                    })
+                }
+            }
+        });
+    </script>
+</body>
+</html>
