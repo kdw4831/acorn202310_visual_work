@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width:100px;
+            height: 100px;
+            border:1px solid red;
+            cursor:pointer;
+            /*css가 변경되는 과정을 보여주기 위한 css 속성*/ 
+            /*transition:all 1s linear; 이 표현은 아래의 3줄을 줄인 표현이다.*/  
+        }
+        #one{
+            transition:all 5s ease-in; /*처음엔 천천히*/
+        }
+        #two{
+            transition:all 5s ease-out;/*나중에 천천히*/
+        }
+        #three{
+            transition:all 5s linear; /*일정하게*/
+        }
+       
+        .margin{
+            margin-left: 800px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>transition테스트</h1>
+        <div class="box" id="one"></div>
+        <div class="box" id="two"></div>
+        <div class="box" id="three"></div> 
+        <button id="start">started</button>
+    </div>
+
+    <script>
+        document.querySelector("#start").addEventListener("click",()=>{
+            document.querySelectorAll(".box").forEach((item)=>{
+                item.classList.add("margin");
+            })
+        })
+    </script>
+</body>
+</html>

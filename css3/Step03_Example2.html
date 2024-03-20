@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body>
+    <div class="container">
+        <button class="animate__animated " id="myBtn">Click me!</button>
+    </div>
+
+
+    <script>
+        //위의 버튼을 누를 때마다 rubberBand라는 키프레임이 버튼에 적용되도록 프로그래밍 해보세요
+        document.querySelector("#myBtn").addEventListener("click",(e)=>{
+            e.target.classList.add("animate__rubberBand");
+        
+
+        })
+        document.querySelector("#myBtn").addEventListener("animationend",(e)=>{
+           
+            e.target.classList.remove("animate__rubberBand");
+
+        })
+        
+        
+        
+    </script>
+</body>
+</html>

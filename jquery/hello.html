@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>//jquery/hello.html</title>
+</head>
+<body>
+    <div class="container">
+        <input placeholder="이름입력..." id="inputName">
+        <button id="addBtn">추가</button>
+        <ul id="msgList">
+            <li>김구라</li>
+            <li>해골</li>
+        </ul>
+        <div>div1</div>
+        <div>div2</div>
+        <div>div3</div>
+        <div>div4</div>
+        <div>div5</div>
+        <div>div6</div>
+    </div>
+
+    <!-- 외부 javascript jquery 로딩-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script>
+        /*
+        //버튼을 눌렀을 때 실행할 함수 등록
+        document.querySelector("#addBtn").addEventListener("click",()=>{
+            //1. 입력한 이름을 읽어와서
+            const name= document.querySelector("#inputName").value;
+            //2. li 요소를 만들어서
+            const li= document.createElement("li");
+            //3. li 요소의 innerText에 이름을 출력한 후 
+            li.innerText=name;
+            //4. id가 msgList인 ul 요소에 li 추가하기
+            document.querySelector("msgList").append(li);
+        })*/
+
+        //id가 addBtn인 요소에 "click" 이벤트가 발생했을 때 실행할 함수 등록
+        $("#addBtn").on("click",()=>{
+            //id가 inputName인 요소에 입력한 value값을 읽어와서 name에 담기
+            const name= $("#inputName").val();
+            // li 요소를 동적으로 만들어서 innerText를 넣어주고 
+            const li = $("<li>").text(name);
+            // id가 msgList인 곳에 위에서 만든 li 요소를 추가하기 
+            $("#msgList").append(li);
+        })
+    </script>
+</body>
+</html>

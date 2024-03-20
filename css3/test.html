@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>이미지 크기에 맞게 겹치기</title>
+  <style>
+    .container {
+      position: relative;
+      width: 400px; /* 원하는 크기로 조정 */
+      height: 300px; /* 원하는 크기로 조정 */
+    }
+
+    .image1 {
+      position: absolute;
+      width: 100%; /* 부모 요소에 맞게 이미지 크기 조정 */
+      height: 100%; /* 부모 요소에 맞게 이미지 크기 조정 */
+    }
+
+    .image2 {
+      position: absolute;
+      width: 50%; /* 원하는 크기로 조정 */
+      height: 50%; /* 원하는 크기로 조정 */
+      top: 25%; /* 원하는 위치로 조정 */
+      left: 25%; /* 원하는 위치로 조정 */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="images/4.jpg" class="image1" alt="원본 이미지">
+    <img src="images/5.png" class="image2" alt="덮어쓸 이미지">
+  </div>
+</body>
+</html>
